@@ -21,29 +21,25 @@ Pod::Spec.new do |s|
   s.dependency "React-Core"
 
   s.subspec 'min' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
+			ss.source_files = '**/FFmpegKitReactNativeModule.{m,h}'
       ss.dependency 'ffmpeg-kit-ios-min', "6.0"
       ss.ios.deployment_target = '12.1'
   end
 
   s.subspec 'min-lts' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
+			ss.source_files = '**/FFmpegKitReactNativeModule.{m,h}'
       ss.dependency 'ffmpeg-kit-ios-min', "6.0.LTS"
       ss.ios.deployment_target = '10'
   end
 
   s.subspec 'min-gpl' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
+			ss.source_files = '**/FFmpegKitReactNativeModule.{m,h}'
       ss.dependency 'ffmpeg-kit-ios-min-gpl', "6.0"
       ss.ios.deployment_target = '12.1'
   end
 
   s.subspec 'min-gpl-lts' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
+			ss.source_files = '**/FFmpegKitReactNativeModule.{m,h}'
       ss.dependency 'ffmpeg-kit-ios-min-gpl', "6.0.LTS"
       ss.ios.deployment_target = '10'
   end
@@ -92,15 +88,17 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'video' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-video', "6.0"
-      ss.ios.deployment_target = '12.1'
+			ss.source_files = 'ios/FFmpegKitReactNativeModule.{m,h}'
+			ss.public_header_files = 'ios/FFmpegKitReactNativeModule.h'
+			ss.header_mappings_dir = 'ios'
+			ss.vendored_frameworks = "ffmpreg-kit/prebuilt/bundle-apple-xcframework-ios/*.{xcframework}"
+			ss.ios.deployment_target = '10'
   end
 
   s.subspec 'video-lts' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
+			ss.source_files = 'ios/FFmpegKitReactNativeModule.{m,h}'
+			ss.public_header_files = 'ios/FFmpegKitReactNativeModule.h'
+			ss.header_mappings_dir = 'ios'
 			ss.vendored_frameworks = "ffmpreg-kit/prebuilt/bundle-apple-xcframework-ios/*.{xcframework}"
 			ss.ios.deployment_target = '10'
   end
