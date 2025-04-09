@@ -20,10 +20,16 @@ Pod::Spec.new do |s|
 
   s.dependency "React-Core"
 
-  s.prepare_command = <<-CMD
-      cd ffmpreg-kit || exit $?
-      ./ios.sh --xcframework || exit $?
-  CMD
+	s.prepare_command = <<-CMD
+		cd ffmpreg-kit
+		./ios.sh \
+			--xcframework \
+			--disable-arm64-simulator \
+			--disable-x86-64-mac-catalyst \
+			--disable-arm64-mac-catalyst \
+			--enable-ios-videotoolbox \
+			--enable-ios-audiotoolbox
+	CMD
 
   s.subspec 'min' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
@@ -106,8 +112,8 @@ Pod::Spec.new do |s|
   s.subspec 'video-lts' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-video', "6.0.LTS"
-      ss.ios.deployment_target = '10'
+			ss.vendored_frameworks = "ffmpreg-kit/prebuilt/bundle-apple-xcframework-ios/*.{xcframework}"
+			ss.ios.deployment_target = '10'
   end
 
   s.subspec 'full' do |ss|
