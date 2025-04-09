@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-kit-react-native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "FFmpeg Kit for React Native",
   "main": "src/index",
   "types": "src/index.d.ts",
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "release": "release-it"
+    "release": "release-it",
+		"prepublishOnly": "node -p \"require('./package.json').version\" > ./ffmpreg-kit/VERSION"
   },
   "keywords": [
     "react-native",

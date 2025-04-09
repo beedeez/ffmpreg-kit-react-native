@@ -40,9 +40,13 @@ BUILD_FULL=""
 FFMPEG_KIT_XCF_BUILD=""
 BUILD_FORCE=""
 BUILD_VERSION=$(git describe --tags --always 2>>"${BASEDIR}"/build.log)
+
 if [[ -z ${BUILD_VERSION} ]]; then
-  echo -e "\n(*): Can not run git commands in this folder. See build.log.\n"
-  exit 1
+  if [[ -f "${BASEDIR}/VERSION" ]]; then
+    BUILD_VERSION=$(cat "${BASEDIR}/VERSION")
+  else
+    BUILD_VERSION="unknown"
+  fi
 fi
 
 # MAIN BUILDS ENABLED BY DEFAULT
